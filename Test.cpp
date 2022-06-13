@@ -2,7 +2,7 @@
 // Created by Андрей on 11.06.2022.
 //
 
-#include "AppManager.h"
+//#include "AppManager.h"
 #include "doctest.h"
 #include "iostream"
 

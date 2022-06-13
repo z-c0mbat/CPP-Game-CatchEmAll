@@ -28,19 +28,19 @@ void AppManager::initUI()
     this->blurPannel.setSize(sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
     this->blurPannel.setPosition(0, 0);
 
-    this->pauseButtonTex.loadFromFile("res/Sprite/Pause.png");
+    this->pauseButtonTex.loadFromFile("../res/Sprite/Pause.png");
     this->pauseButton.setTexture(&this->pauseButtonTex);
     this->pauseButton.setPosition(this->window->getSize().x - 100, 5);
     this->pauseButton.setSize(sf::Vector2f(60, 80));
     this->pauseButton.setFillColor(sf::Color(50,50,50,255));
 
-    this->continueButtonTex.loadFromFile("res/Sprite/PlayIMG.png");
+    this->continueButtonTex.loadFromFile("../res/Sprite/PlayIMG.png");
     this->continueButton.setTexture(&this->continueButtonTex);
     this->continueButton.setPosition(this->window->getSize().x/2-50, this->window->getSize().y/2 - 50);
     this->continueButton.setSize(sf::Vector2f(100, 100));
     this->continueButton.setFillColor(sf::Color(50,50,50,255));
 
-    this->restartButtonTex.loadFromFile("res/Sprite/Reset_Sprite.png");
+    this->restartButtonTex.loadFromFile("../res/Sprite/Reset_Sprite.png");
     this->restartButton.setTexture(&this->restartButtonTex);
     this->restartButton.setPosition(this->window->getSize().x/2-50, this->window->getSize().y/2 - 50);
     this->restartButton.setSize(sf::Vector2f(100, 100));
@@ -52,21 +52,21 @@ void AppManager::initUI()
 */
 void AppManager::initFontsAndImg()
 {
-    this->font.loadFromFile("res/Font/Raleway-Bold.ttf");
+    this->font.loadFromFile("../res/Font/Raleway-Bold.ttf");
     sf::Texture a;
-    a.loadFromFile("res/Sprite/apple.png");
+    a.loadFromFile("../res/Sprite/apple.png");
     this->images.push_back(a);
-    a.loadFromFile("res/Sprite/banana.png");
+    a.loadFromFile("../res/Sprite/banana.png");
     this->images.push_back(a);
-    a.loadFromFile("res/Sprite/blackberry.png");
+    a.loadFromFile("../res/Sprite/blackberry.png");
     this->images.push_back(a);
-    a.loadFromFile("res/Sprite/raspberry.png");
+    a.loadFromFile("../res/Sprite/raspberry.png");
     this->images.push_back(a);
-    a.loadFromFile("res/Sprite/strawberry.png");
+    a.loadFromFile("../res/Sprite/strawberry.png");
     this->images.push_back(a);
-    a.loadFromFile("res/Sprite/bomb.png");
+    a.loadFromFile("../res/Sprite/bomb.png");
     this->images.push_back(a);
-    a.loadFromFile("res/Sprite/basket.png");
+    a.loadFromFile("../res/Sprite/basket.png");
     this->images.push_back(a);
     this->basket.setTexture(&this->images[6]);
     this->basket.setSize(sf::Vector2f(200, 200));
@@ -173,14 +173,14 @@ void AppManager::Pause() {
  * Function: getting last best score and displaying it;
 */
 void AppManager::GetBestScore(bool saveNewScore) {
-    std::ifstream inFile("res/bestScore.txt");
+    std::ifstream inFile("../res/bestScore.txt");
     int best;
     while (inFile >> best) {
         std::cout << best << std::endl;
     }
     if(saveNewScore){
         if(best < this->healthPoints){
-            std::ofstream outFile("res/bestScore.txt");
+            std::ofstream outFile("../res/bestScore.txt");
             outFile << std::to_string(this->healthPoints) << std::endl;
             outFile.close();
         }
