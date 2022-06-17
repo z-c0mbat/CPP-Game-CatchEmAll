@@ -123,23 +123,19 @@ AppManager::AppManager(sf::RenderWindow &win) {
 */
 void AppManager::spawnEnemy() {
     //Randomize and set enemy transform parameters
-    int rnd_size;
-    float rnd_speed = (float) (std::rand() % 20) / 10.f;
-    rnd_size = std::rand() % 80 + 100;
-    int rnd_x = std::rand() % (int) (window->getSize().x - 2 * this->enemy.getLocalBounds().width - 100) +
-                this->enemy.getLocalBounds().width + 100;
-    this->enemy.setSize(sf::Vector2f(rnd_size, rnd_size + (60.f * ((float) rnd_size / 360.f))));
+    auto [v1, v2, v3, v4] = this->func.GenerateRndValues(window->getSize().x, this->enemy.getLocalBounds().width);
+
+    this->enemy.setSize(sf::Vector2f(v2, v2 + (60.f * ((float) v2 / 360.f))));
     this->enemy.setOrigin(this->enemy.getLocalBounds().width / 2, this->enemy.getLocalBounds().height / 2);
-    this->enemy.setPosition(rnd_x - this->enemy.getLocalBounds().width / 2, 0);
+    this->enemy.setPosition(v3 - this->enemy.getLocalBounds().width / 2, 0);
 
     //Randomize enemy type and give him a texture of type
-    int type = std::rand() % 6;
-    this->enemy.setTexture(&this->images[type]);
+    this->enemy.setTexture(&this->images[v4]);
 
     //Add enemy and his parameters to vectors
     this->enemies.push_back(this->enemy);
-    this->enemiesType.push_back(type);
-    this->enemiesAngleSpeed.push_back(rnd_speed);
+    this->enemiesType.push_back(v4);
+    this->enemiesAngleSpeed.push_back(v1);
 }
 
 /**
@@ -292,23 +288,32 @@ void AppManager::updateMousePosition() {
  * @param opt: 0 - user caught enemy, 1 - user caught bomb, 2 - user didn't catch enemy
 */
 void AppManager::getPoints(int opt) {
-    switch (opt) {
-        case 0:
-            this->bonusText.setString("+1");
-            this->bonusText.setFillColor(sf::Color::Green);
-            this->healthPoints += 1;
-            break;
-        case 1:
-            this->bonusText.setString("-10");
-            this->bonusText.setFillColor(sf::Color::Red);
-            this->healthPoints -= 10;
-            break;
-        case 2:
-            this->bonusText.setString("-3");
-            this->bonusText.setFillColor(sf::Color::Red);
-            this->healthPoints -= 3;
-            break;
+    int a = this->func.getPts(opt);
+    this->healthPoints += a;
+    if(a>0){
+        this->bonusText.setString("+" + std::to_string(a));
+        this->bonusText.setFillColor(sf::Color::Green);
+    }else {
+        this->bonusText.setString(std::to_string(a));
+        this->bonusText.setFillColor(sf::Color::Red);
     }
+//    switch (opt) {
+//        case 0:
+//            this->bonusText.setString("+1");
+//            this->bonusText.setFillColor(sf::Color::Green);
+//            this->healthPoints += 1;
+//            break;
+//        case 1:
+//            this->bonusText.setString("-10");
+//            this->bonusText.setFillColor(sf::Color::Red);
+//            this->healthPoints -= 10;
+//            break;
+//        case 2:
+//            this->bonusText.setString("-3");
+//            this->bonusText.setFillColor(sf::Color::Red);
+//            this->healthPoints -= 3;
+//            break;
+//    }
     //display bonus text
     this->bonusText.setPosition(15, 60);
     this->bonusTexts.push_back(this->bonusText);
