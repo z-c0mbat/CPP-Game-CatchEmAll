@@ -6,7 +6,7 @@
 
 class Functions {
 public:
-    Functions(){};
+    Functions() {};
 
 /**
  * Called before we show best score to user;

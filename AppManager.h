@@ -68,8 +68,6 @@ private:
 public:
     AppManager(sf::RenderWindow &win);
 
-    bool inTest;
-
     //Functions
     void spawnEnemy();
 

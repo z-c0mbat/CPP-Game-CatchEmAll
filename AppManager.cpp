@@ -123,7 +123,7 @@ AppManager::AppManager(sf::RenderWindow &win) {
 */
 void AppManager::spawnEnemy() {
     //Randomize and set enemy transform parameters
-    auto [v1, v2, v3, v4] = this->func.GenerateRndValues(window->getSize().x, this->enemy.getLocalBounds().width);
+    auto[v1, v2, v3, v4] = this->func.GenerateRndValues(window->getSize().x, this->enemy.getLocalBounds().width);
 
     this->enemy.setSize(sf::Vector2f(v2, v2 + (60.f * ((float) v2 / 360.f))));
     this->enemy.setOrigin(this->enemy.getLocalBounds().width / 2, this->enemy.getLocalBounds().height / 2);
@@ -142,7 +142,7 @@ void AppManager::spawnEnemy() {
  * Called after best score is restored;
  * Function: display the text with score;
 */
-void AppManager::WriteBestScore(int score){
+void AppManager::WriteBestScore(int score) {
     std::string bestSc;
     bestSc = "Best score was: " + std::to_string(score);
 
@@ -290,30 +290,13 @@ void AppManager::updateMousePosition() {
 void AppManager::getPoints(int opt) {
     int a = this->func.getPts(opt);
     this->healthPoints += a;
-    if(a>0){
+    if (a > 0) {
         this->bonusText.setString("+" + std::to_string(a));
         this->bonusText.setFillColor(sf::Color::Green);
-    }else {
+    } else {
         this->bonusText.setString(std::to_string(a));
         this->bonusText.setFillColor(sf::Color::Red);
     }
-//    switch (opt) {
-//        case 0:
-//            this->bonusText.setString("+1");
-//            this->bonusText.setFillColor(sf::Color::Green);
-//            this->healthPoints += 1;
-//            break;
-//        case 1:
-//            this->bonusText.setString("-10");
-//            this->bonusText.setFillColor(sf::Color::Red);
-//            this->healthPoints -= 10;
-//            break;
-//        case 2:
-//            this->bonusText.setString("-3");
-//            this->bonusText.setFillColor(sf::Color::Red);
-//            this->healthPoints -= 3;
-//            break;
-//    }
     //display bonus text
     this->bonusText.setPosition(15, 60);
     this->bonusTexts.push_back(this->bonusText);
