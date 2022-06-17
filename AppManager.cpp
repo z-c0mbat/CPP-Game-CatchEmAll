@@ -16,6 +16,7 @@ void AppManager::initVars() {
     this->enemySpawnTimerMax = 15;
     this->enemySpawnTimer = 20;
     this->maxEnemies = 15;
+    this->func = Functions();
 }
 
 /**
@@ -142,27 +143,6 @@ void AppManager::spawnEnemy() {
 }
 
 /**
- * Called before we show best score to user;
- * Function: getting last best score and displaying it;
-*/
-auto AppManager::GetBestScore(bool saveNewScore) {
-    std::ifstream inFile("../res/bestScore.txt");
-    int best;
-    while (inFile >> best) {
-        std::cout << best << std::endl;
-    }
-    if (saveNewScore) {
-        if (best < this->healthPoints) {
-            std::ofstream outFile("../res/bestScore.txt");
-            outFile << std::to_string(this->healthPoints) << std::endl;
-            outFile.close();
-        }
-    }
-    inFile.close();
-    return best;
-}
-
-/**
  * Called after best score is restored;
  * Function: display the text with score;
 */
@@ -181,7 +161,7 @@ void AppManager::WriteBestScore(int score){
  * Function: getting last best score and displaying it before game;
 */
 void AppManager::StartOfGame() {
-    WriteBestScore(GetBestScore(false));
+    WriteBestScore(this->func.GetBestScore());
     this->healthPoints = 20;
     this->paused = true;
     this->ended = true;
@@ -192,7 +172,7 @@ void AppManager::StartOfGame() {
  * Function: stops update processes and displaying UI;
 */
 void AppManager::Pause() {
-    WriteBestScore(GetBestScore(false));
+    WriteBestScore(this->func.GetBestScore());
     this->continueButton.setPosition(this->window->getSize().x / 2 - 110, this->window->getSize().y / 2 - 50);
     this->restartButton.setPosition(this->window->getSize().x / 2 + 10, this->window->getSize().y / 2 - 50);
     this->paused = true;
@@ -212,7 +192,7 @@ void AppManager::EndGame() {
     this->continueButton.setPosition(this->window->getSize().x / 2 - 50, this->window->getSize().y / 2 - 50);
     this->restartButton.setPosition(this->window->getSize().x / 2 - 50, this->window->getSize().y / 2 - 50);
 
-    GetBestScore(false);
+    WriteBestScore(this->func.GetBestScore());
 }
 
 /**
@@ -229,7 +209,12 @@ void AppManager::EndGameByTimer() {
         this->resultText.setPosition(this->window->getSize().x / 2, this->window->getSize().y / 2 - 120);
         this->continueButton.setPosition(this->window->getSize().x / 2 - 50, this->window->getSize().y / 2 - 50);
         this->restartButton.setPosition(this->window->getSize().x / 2 - 50, this->window->getSize().y / 2 - 50);
-        GetBestScore(true);
+        int a = this->func.GetBestScore();
+        if (a < this->healthPoints) {
+            std::ofstream outFile("../res/bestScore.txt");
+            outFile << std::to_string(this->healthPoints) << std::endl;
+            outFile.close();
+        }
     } else {
         EndGame();
     }

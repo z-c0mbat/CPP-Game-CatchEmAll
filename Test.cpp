@@ -2,17 +2,19 @@
 // Created by Андрей on 11.06.2022.
 //
 
-//#include "AppManager.cpp"
+#include "Functions.h"
 #include <doctest.h>
-//#include <typeinfo>
 
 TEST_CASE("Test 1") {
-//    sf::RenderWindow window(sf::VideoMode(1080, 720, 32), "Catch em all");
-//    window.setFramerateLimit(60);
-//
-//    auto app = AppManager(window);
-//    int a = app.GetBestScore(false);
-    REQUIRE(1+2==3);
+    Functions a = Functions();
+    int b = a.GetBestScore();
+    REQUIRE(typeid(b).name() == typeid(1).name());
+}
+
+TEST_CASE("Test 2") {
+    Functions a = Functions();
+    int b = a.GetBestScore();
+            REQUIRE(typeid(b).name() == typeid(1).name());
 }
 
 extern "C" const char *__asan_default_options() {

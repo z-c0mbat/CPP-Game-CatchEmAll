@@ -5,16 +5,19 @@
 
 #include<iostream>
 #include<vector>
+#include "Functions.h"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
+#include <fstream>
 
 class AppManager {
 private:
     sf::RenderWindow *window;
+    Functions func;
 
     sf::Vector2i mousePos;
     sf::Vector2i mousePosLast;
@@ -77,8 +80,6 @@ public:
     void EndGame();
 
     void StartOfGame();
-
-    auto GetBestScore(bool saveNewScore);
 
     void WriteBestScore(int score);
 

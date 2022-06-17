@@ -16,13 +16,13 @@ add_subdirectory(external/doctest)
 #include(cmake/CompilerWarnings.cmake)
 #set_project_warnings(default)
 
-add_executable(Game_test Test.cpp)
+add_executable(Game_test Test.cpp Functions.cpp Functions.h)
 target_link_libraries(Game_test doctest)
 
 add_test(NAME Test COMMAND Test --force-colors -d)
 add_custom_target(cloud-test COMMAND Test --force-colors -d)
 
-add_executable(Game_02 main.cpp AppManager.cpp AppManager.h)
+add_executable(Game_02 main.cpp AppManager.cpp AppManager.h Functions.cpp Functions.h)
 target_link_libraries(Game_02 sfml-graphics sfml-audio)
 
 #add_subdirectory(external/doctest)
