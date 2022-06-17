@@ -12,10 +12,9 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-class AppManager
-{
+class AppManager {
 private:
-    sf::RenderWindow* window;
+    sf::RenderWindow *window;
 
     sf::Vector2i mousePos;
     sf::Vector2i mousePosLast;
@@ -56,29 +55,48 @@ private:
     sf::RectangleShape blurPannel;
 
     void initVars();
+
     void initUI();
+
     void initFontsAndImg();
+
     void initText();
 
 public:
-    AppManager(sf::RenderWindow& win);
+    AppManager(sf::RenderWindow &win);
+
+    bool inTest;
 
     //Functions
     void spawnEnemy();
+
     void getPoints(int opt);
+
     void Pause();
+
     void EndGame();
+
     void StartOfGame();
-    void GetBestScore(bool saveNewScore);
+
+    auto GetBestScore(bool saveNewScore);
+
+    void WriteBestScore(int score);
+
     void EndGameByTimer();
+
     void RestartAllValues();
 
     void updateMousePosition();
+
     void updateScoreText();
+
     void updateBonusText();
+
     void updateTimer();
+
     void updateEnemies();
+
     void update();
 
-    void renderObjects(sf::RenderTarget& win);
+    void renderObjects(sf::RenderTarget &win);
 };
