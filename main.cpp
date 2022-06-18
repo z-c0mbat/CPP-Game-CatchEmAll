@@ -7,7 +7,7 @@ int main() {
 
     auto app = AppManager(window);
 
-    //when in game
+    ///when in game
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {

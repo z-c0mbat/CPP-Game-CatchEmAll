@@ -43,9 +43,8 @@ public:
     };
 
 /**
- * Called before spawning an enemy
- * Function: returning random values with restrictions;
- * @return: v1 - speed; v2 - size; v3 - x coord; v4 - type;
+ * Called after catching enemy
+ * Function: returning health bonus;
 */
     auto getPts(int opt) {
         int res;
