@@ -13,7 +13,7 @@ struct Functions {
         std::ifstream inFile("../res/bestScore.txt");
         int best;
         while (inFile >> best) {
-            std::cout << best << std::endl;
+            //std::cout << best << std::endl;
         }
         inFile.close();
         return best;
