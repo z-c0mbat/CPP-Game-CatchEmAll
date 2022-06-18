@@ -16,3 +16,5 @@ add_custom_target(cloud-test COMMAND Test --force-colors -d)
 
 add_executable(Game main.cpp AppManager.cpp)
 target_link_libraries(Game sfml-graphics sfml-audio)
+
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/res DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/)
