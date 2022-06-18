@@ -15,7 +15,9 @@
 
 class AppManager {
 private:
+    ///window
     sf::RenderWindow *window;
+    ///functions class
     Functions func;
 
     sf::Vector2i mousePos;
@@ -31,13 +33,21 @@ private:
     std::vector<sf::Text> bonusTexts;
     std::vector<int> bonusTextTimers;
 
+    ///timer over one second
     int timer;
+    ///seconds left
     int sec;
+    ///health points
     int healthPoints;
+    ///spawn of enemy timer
     int enemySpawnTimer;
+    ///maximum timer of enemy spawn
     int enemySpawnTimerMax;
+    ///maximum amount of enemies
     int maxEnemies;
+    ///if the game is paused
     bool paused;
+    ///if the game is ended
     bool ended;
 
     std::vector<sf::Texture> images;
@@ -56,6 +66,7 @@ private:
 
     sf::RectangleShape blurPannel;
 
+    ///initializing functions
     void initVars();
 
     void initUI();
@@ -67,7 +78,7 @@ private:
 public:
     AppManager(sf::RenderWindow &win);
 
-    //Functions
+    ///main functions
     void spawnEnemy();
 
     void getPoints(int opt);

@@ -15,7 +15,7 @@ int main() {
                 window.close();
             } else if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::Escape) {
-                    std::cout << "Pause" << std::endl;
+                    //std::cout << "Pause" << std::endl;
                     app.Pause();
                 }
             }

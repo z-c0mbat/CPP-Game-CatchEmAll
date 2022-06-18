@@ -4,15 +4,12 @@
 #include<iostream>
 #include <fstream>
 
-class Functions {
-public:
-    Functions() {};
-
+struct Functions {
 /**
  * Called before we show best score to user;
  * Function: getting last best score and displaying it;
 */
-    auto GetBestScore() {
+    auto static GetBestScore() {
         std::ifstream inFile("../res/bestScore.txt");
         int best;
         while (inFile >> best) {
@@ -28,7 +25,7 @@ public:
  * @param: windowX - window width; enemyWidth - size of enemy on x axis;
  * @return: v1 - speed; v2 - size; v3 - x coord; v4 - type;
 */
-    auto GenerateRndValues(int windowX, int enemyWidth) {
+    auto static GenerateRndValues(int windowX, int enemyWidth) {
         struct res {
             float v1;
             int v2;
@@ -46,7 +43,7 @@ public:
  * Called after catching enemy
  * Function: returning health bonus;
 */
-    auto getPts(int opt) {
+    auto static getPts(int opt) {
         int res;
         switch (opt) {
             case 0:

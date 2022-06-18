@@ -103,6 +103,7 @@ void AppManager::initText() {
 
 /**
  * Constructor
+ * @param: win - window where everything is rendered
 */
 AppManager::AppManager(sf::RenderWindow &win) {
     this->window = &win;
@@ -142,6 +143,7 @@ void AppManager::spawnEnemy() {
 /**
  * Called after best score is restored;
  * Function: display the text with score;
+ * @param: score - score that we display on screen;
 */
 void AppManager::WriteBestScore(int score) {
     std::string bestSc;
@@ -369,7 +371,7 @@ void AppManager::updateEnemies() {
                     this->getPoints(0);
                 } else {
                     this->getPoints(1);
-                    std::cout << "Boom!" << "\n";
+                    //std::cout << "Boom!" << "\n";
                 }
                 this->enemies.erase(this->enemies.begin() + i);
                 this->enemiesType.erase(this->enemiesType.begin() + i);
