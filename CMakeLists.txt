@@ -10,11 +10,11 @@ include_directories(C:/Documents/SFML/SFML-2.5.1/include)
 
 add_subdirectory(external/doctest)
 
-add_executable(Game_test Test.cpp Functions.h)
+add_executable(Game_test Test.cpp)
 target_link_libraries(Game_test doctest)
 
 add_test(NAME Test COMMAND Test --force-colors -d)
 add_custom_target(cloud-test COMMAND Test --force-colors -d)
 
-add_executable(Game main.cpp AppManager.cpp Functions.h)
+add_executable(Game main.cpp AppManager.cpp)
 target_link_libraries(Game sfml-graphics sfml-audio)
